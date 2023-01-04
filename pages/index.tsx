@@ -2,6 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
+import Typograpy from "../src/common_component/Typograpy";
+import Divider from "../src/common_component/Divider";
+import Button from "../src/common_component/Button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +17,18 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div>메인</div>
-      </main>
+
+      <div>메인</div>
+      <Typograpy margin="0px 1px 2px 3px">dd</Typograpy>
+      <Divider size={1} color="gray100" />
+      <Typograpy margin="0px 1px 2px 3px">dd</Typograpy>
+      <Button
+        size={486}
+        backgroundColor="gray100"
+        onClick={() => console.log("click")}
+      >
+        로그인
+      </Button>
     </>
   );
 }
