@@ -3,6 +3,10 @@ export const typograpySize = {
     fontSize: "30px",
     lineHeight: "36.31px",
   },
+  25: {
+    fontSize: "25px",
+    lineHeight: "30.26px",
+  },
   20: {
     fontSize: "20px",
     lineHeight: "24.2px",

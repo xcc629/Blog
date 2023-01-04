@@ -1,8 +1,9 @@
+import * as React from "react";
 import { CSSProperties } from "react";
-import { typograpySize, themeColor } from "../theme";
+import { typograpySize, themeColor } from "./theme";
 
 interface TypograyProps {
-  size?: 30 | 20 | 18;
+  size?: 30 | 20 | 25 | 18;
   color?: keyof typeof themeColor;
   padding?: CSSProperties["padding"];
   margin?: CSSProperties["margin"];
