@@ -1,11 +1,14 @@
+import * as React from "react";
+
 import Head from "next/head";
+import { useRouter } from "next/router";
 
-import { Inter } from "@next/font/google";
-import HomeContainer from "../src/blog_component/_containers/HomeContainer";
+import PostContainer from "../../src/blog_component/_containers/PostContainer";
 
-const inter = Inter({ subsets: ["latin"] });
+export default function Post() {
+  const router = useRouter();
+  const { id } = router.query;
 
-export default function Home() {
   return (
     <>
       <Head>
@@ -15,7 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <HomeContainer />
+      <PostContainer />
     </>
   );
 }

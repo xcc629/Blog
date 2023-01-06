@@ -1,7 +1,7 @@
 import * as React from "react";
-import { CSSProperties } from "styled-components";
-import { themeColor } from "./theme";
+import { themeColor } from "./_theme";
 import Typograpy from "./Typograpy";
+import { CSSProperties } from "react";
 
 interface ButtonProps {
   size: 486 | 125;

@@ -1,0 +1,10 @@
+{
+  "create component": {
+    "prefix": "com",
+    "body": [
+      "import * as React from 'react'",
+      "export default function ${TM_FILENAME_BASE} () {}"
+    ],
+    "description": "CREATE component"
+  }
+}

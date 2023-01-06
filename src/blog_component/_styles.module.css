@@ -1,0 +1,190 @@
+/**Layout*/
+
+.flexRightCenter {
+  display: flex;
+  align-items: center;
+}
+
+.flexRightBottom {
+  display: flex;
+  align-items: flex-end;
+}
+
+.flexBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flexBetweenCenter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* PC (해상도 1024px)*/
+@media all and (min-width: 1024px) {
+  /**page*/
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 1024px;
+    margin: 2rem 0 0;
+    padding: 0 2vw 0;
+  }
+
+  .main {
+    width: 1024px;
+    margin-top: 5rem;
+    padding: 0 30px;
+  }
+
+  /** 홈화면 */
+  .gridWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2vw;
+    row-gap: 2vh;
+    margin-top: 36px;
+  }
+
+  /** 시리즈 페이지 관련 */
+
+  .seriesTitle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 29px;
+  }
+
+  .seriesMenu {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 6fr 1fr 1fr;
+    padding: 28px 0;
+  }
+
+  /** 포스트 페이지 관련 **/
+  .nav {
+    margin-bottom: 23px;
+  }
+
+  .titleWrapper {
+    padding: 32px 0;
+  }
+
+  .nextPreTab {
+    padding: 50px 0;
+  }
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /**page*/
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 768px;
+    margin: 2rem 0 0;
+    padding: 0 2vw 0;
+  }
+
+  .main {
+    width: 768px;
+    margin-top: 5rem;
+    padding: 0 30px;
+  }
+
+  /** 홈화면 */
+  .gridWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2vw;
+    row-gap: 2vh;
+    margin-top: 36px;
+  }
+
+  /** 시리즈 페이지 관련 */
+
+  .seriesTitle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 29px;
+  }
+
+  .seriesMenu {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 6fr 1fr 1fr;
+    padding: 28px 0;
+  }
+
+  /** 포스트 페이지 관련 **/
+  .nav {
+    margin-bottom: 23px;
+  }
+
+  .titleWrapper {
+    padding: 32px 0;
+  }
+
+  .nextPreTab {
+    padding: 50px 0;
+  }
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media all and (max-width: 767px) {
+  /**page*/
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 100%;
+    margin: 2rem 0 0;
+    padding: 0 2vw 0;
+  }
+
+  .main {
+    width: 100%;
+    margin-top: 5rem;
+    padding: 0 30px;
+  }
+
+  /** 홈화면 */
+  .gridWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2vw;
+    row-gap: 2vh;
+    margin-top: 36px;
+  }
+
+  /** 시리즈 페이지 관련 */
+
+  .seriesTitle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 29px;
+  }
+
+  .seriesMenu {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 6fr 1fr 1fr;
+    padding: 28px 0;
+  }
+
+  /** 포스트 페이지 관련 **/
+  .nav {
+    margin-bottom: 23px;
+  }
+
+  .titleWrapper {
+    padding: 32px 0;
+  }
+
+  .nextPreTab {
+    padding: 50px 0;
+  }
+}
