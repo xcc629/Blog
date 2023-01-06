@@ -1,4 +1,4 @@
-import { themeColor } from "./theme";
+import { themeColor } from "./_theme";
 
 interface DividerProps {
   size: number;
