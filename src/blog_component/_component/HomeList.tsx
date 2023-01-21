@@ -2,6 +2,7 @@ import Link from "next/link";
 import * as React from "react";
 import Div from "../../common_component/Div";
 import Typograpy from "../../common_component/Typograpy";
+import { HREF } from "../../const";
 import styles from "../_styles.module.css";
 
 interface itemProps {
@@ -20,23 +21,23 @@ const list = [
 
 function GridItem({ id, imgScr, title, description }: itemProps) {
   return (
-    <Link href={`/series/${id}`}>
+    <Link href={HREF.series + `${id}`}>
       <div className={styles.gridItem}>
         <Div
           backgroundColor="green100"
           styles={{
             width: "100%",
             borderRadius: "8px",
-            aspectRatio: "1/1",
+            aspectRatio: "2/1",
           }}
         >
           {}
         </Div>
         <Div>
-          <Typograpy margin="33px 0 21px" size={30} weight={600}>
+          <Typograpy margin="10px 0 8px" size={25} weight={600}>
             {title}
           </Typograpy>
-          <Typograpy size={20} weight={500} color="gray200">
+          <Typograpy size={15} weight={500} color="gray200">
             {description}
           </Typograpy>
         </Div>

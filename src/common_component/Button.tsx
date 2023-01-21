@@ -4,7 +4,8 @@ import Typograpy from "./Typograpy";
 import { CSSProperties } from "react";
 
 interface ButtonProps {
-  size: 486 | 125;
+  size: number;
+  height?: string;
   backgroundColor?: keyof typeof themeColor;
   color?: keyof typeof themeColor;
   border?: CSSProperties["border"];
@@ -15,6 +16,7 @@ interface ButtonProps {
 
 export default function Button({
   size,
+  height = "35px",
   backgroundColor,
   border,
   borderRadius,
@@ -25,7 +27,7 @@ export default function Button({
     <button
       style={{
         width: `${size}px`,
-        height: "66px",
+        height: height,
         border: border || "none",
         borderRadius: borderRadius,
         backgroundColor: backgroundColor
@@ -35,7 +37,7 @@ export default function Button({
       }}
       onClick={onClick}
     >
-      <Typograpy {...typograpyProps} size={20} />
+      <Typograpy {...typograpyProps} size={15} />
     </button>
   );
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import * as React from "react";
 import Div from "../../common_component/Div";
 import Typograpy from "../../common_component/Typograpy";
+import { HREF } from "../../const";
 
 import styles from "../_styles.module.css";
 
@@ -28,17 +29,17 @@ const list = [
 
 function SeriesItem() {
   return (
-    <Link href={`/posts/${1}`}>
+    <Link href={HREF.post + `${1}`}>
       <Div padding="60px 0">
         <div className={styles.flexRightBottom}>
-          <Typograpy size={30} weight={600}>
+          <Typograpy size={20} weight={600}>
             {13}. 제목이다
           </Typograpy>
-          <Typograpy size={20} weight={500} margin="0 0 0 6px" color="gray100">
+          <Typograpy size={15} weight={500} margin="0 0 0 6px" color="gray100">
             2023.01.03
           </Typograpy>
         </div>
-        <Typograpy margin="28px 0 0" size={20} weight={500} color="gray300">
+        <Typograpy margin="10px 0 0" size={15} weight={500} color="gray300">
           설명
         </Typograpy>
       </Div>
