@@ -1,7 +1,8 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 
-import Header from "../src/blog_component/_component/Header";
+import Header from "../src/blog_component/_component/Header/Header";
+import Divider from "../src/common_component/Divider";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
       >
         <Header />
+        <Divider size={1} color="gray50" />
         <Component {...pageProps} />
       </main>
     </div>

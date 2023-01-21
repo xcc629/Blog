@@ -4,7 +4,7 @@ import { DivProps } from "./Div";
 import { typograpySize, themeColor } from "./_theme";
 
 interface TypograyProps extends DivProps {
-  size?: 30 | 20 | 25 | 18;
+  size?: 30 | 20 | 25 | 18 | 15;
   weight?: CSSProperties["fontWeight"];
 }
 

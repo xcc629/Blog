@@ -15,11 +15,16 @@ export const typograpySize = {
     fontSize: "18px",
     lineHeight: "21.78px",
   },
+  15: {
+    fontSize: "15px",
+    lineHeight: "18.15px",
+  },
 } as const;
 
 export const themeColor = {
   white: "#FFFFFF",
 
+  gray50: "#E9E9E9",
   gray100: "#DDDDDD",
   gray200: "#C7C7C7",
   gray300: "#8C8C8C",

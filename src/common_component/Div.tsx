@@ -8,7 +8,7 @@ export interface DivProps extends BaseProps {
   margin?: React.CSSProperties["margin"];
   padding?: React.CSSProperties["padding"];
   children: React.ReactNode;
-  color?: keyof typeof themeColor & React.CSSProperties["color"];
+  color?: keyof typeof themeColor;
   backgroundColor?: keyof typeof themeColor;
 }
 
@@ -24,7 +24,9 @@ export default function Div({
       style={{
         margin: margin,
         padding: padding,
-        backgroundColor: backgroundColor ? themeColor[backgroundColor] : "",
+        backgroundColor: backgroundColor
+          ? themeColor[backgroundColor]
+          : "white",
         ...styles,
       }}
       {...props}
