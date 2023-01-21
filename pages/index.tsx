@@ -1,6 +1,12 @@
 import Head from "next/head";
 
 import { Inter } from "@next/font/google";
+import Typograpy from "../src/common_component/Typograpy";
+import Button from "../src/common_component/Button";
+import { MouseEvent } from "react";
+import Div from "../src/common_component/Div";
+import Link from "next/link";
+import { HREF } from "../src/const";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +20,28 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div style={{ padding: "100px" }}></div>
+      <div style={{ padding: "100px 0" }}>
+        <Typograpy size={30}>안녕하세요.</Typograpy>
+        <Typograpy>프론트엔드 개발자 임근홍</Typograpy>
+        <Typograpy size={30}>개인 블로그입니다.</Typograpy>
+
+        <Div margin="20px 0 0">
+          <Link href={HREF.tech}>
+            <Div backgroundColor="green300">
+              <Typograpy color="white" padding="10px">
+                go: 기술 블로그
+              </Typograpy>
+            </Div>
+          </Link>
+          <Link href={HREF.resume}>
+            <Div backgroundColor="green300" margin="5px 0 0">
+              <Typograpy color="white" padding="10px">
+                go: 이력서와 포트폴리오
+              </Typograpy>
+            </Div>
+          </Link>
+        </Div>
+      </div>
     </>
   );
 }

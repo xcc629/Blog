@@ -19,7 +19,7 @@ export default function Header() {
     <>
       <header className={styles.header}>
         <div className={styles.flexRightCenter}>
-          <Link href={HREF.tech}>
+          <Link href={HREF.origin}>
             <Typograpy size={25} weight={600}>
               XCC629
             </Typograpy>
