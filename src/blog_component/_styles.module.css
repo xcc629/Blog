@@ -53,6 +53,24 @@
   font-size: 15px;
 }
 
+.titleInput {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 30px;
+  border: none;
+  outline: none;
+}
+
+.stikyHeader {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  margin: 0.5rem;
+  padding: 0 10px;
+}
+
 /* PC (해상도 1024px)*/
 @media all and (min-width: 1024px) {
   /**page*/

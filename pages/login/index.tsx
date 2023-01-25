@@ -4,12 +4,12 @@ import { Inter } from "@next/font/google";
 import Typograpy from "../../src/common_component/Typograpy";
 import Input from "../../src/blog_component/_component/Input";
 import Button from "../../src/common_component/Button";
-import { MouseEvent } from "react";
+
 import Div from "../../src/common_component/Div";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Resume() {
+export default function Login() {
   return (
     <>
       <Head>
