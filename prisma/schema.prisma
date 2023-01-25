@@ -41,6 +41,8 @@ model Post {
 model Series {
   id    Int    @id @default(autoincrement())
   title  String @unique
+  imgPath String
+  descrition String
   posts Post[]
 
   @@map("series")
