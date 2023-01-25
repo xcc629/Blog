@@ -1,8 +1,9 @@
 import Head from "next/head";
 
 import { Inter } from "@next/font/google";
+
+import React from "react";
 import WEditorContainer from "../../src/blog_component/_containers/WEditorContainer";
-import WEHeader from "../../src/blog_component/_component/WEHeader";
 
 const inter = Inter({ subsets: ["latin"] });
 

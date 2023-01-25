@@ -1,9 +1,9 @@
 import Head from "next/head";
 
+import React from "react";
+
 import { Inter } from "@next/font/google";
 import Typograpy from "../src/common_component/Typograpy";
-import Button from "../src/common_component/Button";
-import { MouseEvent } from "react";
 import Div from "../src/common_component/Div";
 import Link from "next/link";
 import { HREF } from "../src/const";
