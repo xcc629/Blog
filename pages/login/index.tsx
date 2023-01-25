@@ -6,6 +6,7 @@ import Input from "../../src/blog_component/_component/Input";
 import Button from "../../src/common_component/Button";
 
 import Div from "../../src/common_component/Div";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
