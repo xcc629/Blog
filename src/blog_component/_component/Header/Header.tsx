@@ -5,7 +5,6 @@ import * as React from "react";
 import Button from "../../../common_component/Button";
 
 import styles from "../../_styles.module.css";
-import MenuIcon from "../../_icon/MenuIcon";
 
 import ArrowIcon from "../../_icon/ArrowIcon";
 import { useHandler } from "./_hooks";
