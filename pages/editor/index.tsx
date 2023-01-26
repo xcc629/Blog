@@ -3,7 +3,15 @@ import Head from "next/head";
 import { Inter } from "@next/font/google";
 
 import React from "react";
-import WEditorContainer from "../../src/blog_component/_containers/WEditorContainer";
+
+import dynamic from "next/dynamic";
+
+const WEditorContainer = dynamic(
+  () => import("@src/blog_component/_containers/WEditorContainer"),
+  {
+    ssr: false,
+  }
+);
 
 const inter = Inter({ subsets: ["latin"] });
 

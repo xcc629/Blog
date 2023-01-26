@@ -1,8 +1,7 @@
+import Button from "@src/common_component/Button";
+import Typograpy from "@src/common_component/Typograpy";
 import * as React from "react";
-import Button from "../../common_component/Button";
-import Divider from "../../common_component/Divider";
-import Typograpy from "../../common_component/Typograpy";
-import styles from "../_styles.module.css";
+import styles from "@style/index";
 
 export default function WEHeader() {
   return (

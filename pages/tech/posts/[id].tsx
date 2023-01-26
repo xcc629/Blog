@@ -2,8 +2,7 @@ import * as React from "react";
 
 import Head from "next/head";
 import { useRouter } from "next/router";
-
-import PostContainer from "../../../src/blog_component/_containers/PostContainer";
+import PostContainer from "@src/blog_component/_containers/PostContainer";
 
 export default function Post() {
   const router = useRouter();
@@ -17,7 +16,7 @@ export default function Post() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      {id}
       <PostContainer />
     </>
   );

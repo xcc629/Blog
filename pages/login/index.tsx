@@ -1,14 +1,14 @@
 import Head from "next/head";
 
 import { Inter } from "@next/font/google";
-import Typograpy from "../../src/common_component/Typograpy";
-import Input from "../../src/blog_component/_component/Input";
-import Button from "../../src/common_component/Button";
 
-import Div from "../../src/common_component/Div";
 import React from "react";
+import Typograpy from "@src/common_component/Typograpy";
+import Div from "@src/common_component/Div";
+import Input from "@src/blog_component/_component/Input";
+import Button from "@src/common_component/Button";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export default function Login() {
   return (

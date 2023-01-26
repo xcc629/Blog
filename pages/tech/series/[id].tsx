@@ -1,6 +1,6 @@
+import SeriesContainer from "@src/blog_component/_containers/SeriesContainer";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import SeriesContainer from "../../../src/blog_component/_containers/SeriesContainer";
 
 export default function Series() {
   const router = useRouter();

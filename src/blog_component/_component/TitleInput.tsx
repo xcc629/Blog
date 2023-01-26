@@ -1,6 +1,5 @@
 import * as React from "react";
-
-import styles from "../_styles.module.css";
+import styles from "@style/index";
 
 export default function TitleInput() {
   return (

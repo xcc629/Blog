@@ -1,9 +1,7 @@
-import Div from "../../common_component/Div";
-import Divider from "../../common_component/Divider";
-import Typograpy from "../../common_component/Typograpy";
-import SeriesList from "../_component/HomeList";
-
-import styles from "../_styles.module.css";
+import Div from "@src/common_component/Div";
+import Typograpy from "@src/common_component/Typograpy";
+import styles from "@style/index";
+import HomeList from "../_component/HomeList";
 
 export default function SeriesCountainer() {
   return (
@@ -13,7 +11,7 @@ export default function SeriesCountainer() {
           전체 시리즈
         </Typograpy>
       </Div>
-      <SeriesList />
+      <HomeList />
     </main>
   );
 }
