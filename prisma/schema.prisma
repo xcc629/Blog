@@ -30,19 +30,19 @@ model Post {
   published  Boolean    @default(false)
   author     User       @relation(fields: [authorId], references: [id])
   authorId   Int
-  series Series @relation( fields: [seriesTitle] ,references: [title])
-  seriesTitle String
+  series Series @relation( fields: [seriesId] ,references: [id])
+  seriesId Int
 
   @@map("posts")
   @@index([authorId])
-  @@index([seriesTitle])
+  @@index([seriesId])
+
 }
 
 model Series {
   id    Int    @id @default(autoincrement())
   title  String @unique
-  imgPath String
-  descrition String
+  description String
   posts Post[]
 
   @@map("series")

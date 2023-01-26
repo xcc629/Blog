@@ -1,14 +1,14 @@
 import Link from "next/link";
-import Typograpy from "../../../common_component/Typograpy";
 
 import * as React from "react";
-import Button from "../../../common_component/Button";
 
-import styles from "../../_styles.module.css";
+import styles from "@style/index";
 
-import ArrowIcon from "../../_icon/ArrowIcon";
 import { useHandler } from "./_hooks";
-import { HREF } from "../../../const";
+import { HREF } from "@src/const";
+import Typograpy from "@src/common_component/Typograpy";
+import ArrowIcon from "@src/blog_component/_icon/ArrowIcon";
+import Button from "@src/common_component/Button";
 
 export default function Header() {
   const { location, isClickCatergory, isClickMenu, onClickCategory } =

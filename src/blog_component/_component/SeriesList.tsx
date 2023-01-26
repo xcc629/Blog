@@ -1,10 +1,10 @@
+import Div from "@src/common_component/Div";
+import Typograpy from "@src/common_component/Typograpy";
+import { HREF } from "@src/const";
 import Link from "next/link";
 import * as React from "react";
-import Div from "../../common_component/Div";
-import Typograpy from "../../common_component/Typograpy";
-import { HREF } from "../../const";
 
-import styles from "../_styles.module.css";
+import styles from "@style/index";
 
 const list = [
   {

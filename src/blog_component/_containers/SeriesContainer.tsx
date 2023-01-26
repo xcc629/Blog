@@ -1,10 +1,9 @@
+import Div from "@src/common_component/Div";
+import Divider from "@src/common_component/Divider";
+import Typograpy from "@src/common_component/Typograpy";
 import * as React from "react";
-import Div from "../../common_component/Div";
-import Divider from "../../common_component/Divider";
-import Typograpy from "../../common_component/Typograpy";
 import SeriesList from "../_component/SeriesList";
-
-import styles from "../_styles.module.css";
+import styles from "@style/index";
 
 const list = {
   seriesTitle: "시리즈 타이틀",

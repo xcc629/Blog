@@ -1,16 +1,17 @@
-import prisma from "../../libs/prisma";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { INextApiResponse } from "@src/interfaces/api";
+import prisma from "@src/libs/prisma";
+import type { NextApiRequest } from "next";
 
-type Data = {
+type tData = {
   isLogin: true;
   role: "ADMIN" | "VISITANT";
 };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: INextApiResponse<tData>
 ) {
-  if (req.method === "post") {
+  if (req.method === "POST") {
     const { email, password } = req.body;
     const user = await prisma.user.findUnique({
       where: {
@@ -20,5 +21,7 @@ export default async function handler(
     if (user?.password === password && user?.role === "ADMIN") {
       res.status(200).json({ isLogin: true, role: user.role });
     }
+  } else {
+    res.status(400).json({ message: "postLogin should be 'Post'" });
   }
 }
