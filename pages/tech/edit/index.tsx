@@ -5,6 +5,7 @@ import { Inter } from "@next/font/google";
 import React from "react";
 
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
 const WEditorContainer = dynamic(
   () => import("@src/blog_component/_containers/WEditorContainer"),
@@ -16,6 +17,10 @@ const WEditorContainer = dynamic(
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Editor() {
+  const router = useRouter();
+
+  const { redirect } = router.query;
+
   return (
     <>
       <Head>
