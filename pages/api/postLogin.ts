@@ -1,15 +1,19 @@
-import { INextApiResponse } from "@src/interfaces/api";
+import { INextApiResponse } from "@src/libs/interfaces/api";
 import prisma from "@src/libs/prisma";
 import type { NextApiRequest } from "next";
 
-type tData = {
-  isLogin: true;
-  role: "ADMIN" | "VISITANT";
+export type tPostLoginRes = {
+  isLogin: boolean;
+  userInfo?: {
+    id: number;
+    email: string;
+  };
+  role: "ADMIN" | "VISITANT" | "UNKNOWN USER";
 };
 
 export default async function handler(
   req: NextApiRequest,
-  res: INextApiResponse<tData>
+  res: INextApiResponse<tPostLoginRes>
 ) {
   if (req.method === "POST") {
     const { email, password } = req.body;
@@ -19,7 +23,13 @@ export default async function handler(
       },
     });
     if (user?.password === password && user?.role === "ADMIN") {
-      res.status(200).json({ isLogin: true, role: user.role });
+      res.status(200).json({
+        isLogin: true,
+        userInfo: { id: user.id, email: user.email },
+        role: user.role,
+      });
+    } else {
+      res.status(200).json({ isLogin: false, role: "UNKNOWN USER" });
     }
   } else {
     res.status(400).json({ message: "postLogin should be 'Post'" });

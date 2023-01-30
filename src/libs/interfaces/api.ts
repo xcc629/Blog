@@ -6,5 +6,3 @@ export interface IErrorMessage {
 
 export interface INextApiResponse<T>
   extends NextApiResponse<T | IErrorMessage> {}
-
-

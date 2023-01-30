@@ -1,15 +1,18 @@
 import axios from "axios";
 
-type tCreatePostPayload = {
-  title: string;
-  published: boolean;
-  authorId: number;
-  seriesId: number;
-};
+export const createPost = (payload: {}) => axios.post("/api/postPost", payload);
 
-export const createPost = (payload: tCreatePostPayload) =>
-  axios.post("/postPost", payload);
+export const getPost = (param: string) =>
+  axios
+    .get("http://localhost:3000/api/getPost", {
+      params: {
+        postId: param,
+      },
+    })
+    .then((res) => res.data);
 
-export const getPost = () => axios.get("/getPost");
-
-export const getPostList = () => axios.get("/getPostList");
+const listService = axios.create({
+  baseURL: "/api/getPostList",
+});
+export const getPostList = (queryString: string) =>
+  listService.get(queryString).then((res) => res.data);

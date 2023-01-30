@@ -1,45 +1,85 @@
 import Div from "@src/common_component/Div";
 import Divider from "@src/common_component/Divider";
 import Typograpy from "@src/common_component/Typograpy";
-import * as React from "react";
-import SeriesList from "../_component/SeriesList";
+import { useCallback, useMemo, useState } from "react";
+import SeriesList from "../_component/PostsList";
 import styles from "@style/index";
 
-const list = {
-  seriesTitle: "시리즈 타이틀",
-  seriesDescription: "시리즈설명시리즈설명시리즈설명시리즈설명시리즈설명",
-  seriesThumnailSrc: "",
-  postCount: 4,
-  posts: [
-    { id: 1, title: "제목이다", summary: "dddd" },
-    { id: 2, title: "제목이다", summary: "dddd" },
-    { id: 3, title: "제목이다", summary: "dddd" },
-  ],
-};
+import { tSeriesData } from "pages/api/getSeries";
+import { useInfiniteQuery, useQuery } from "react-query";
+import { getSeries } from "@src/libs/api/series";
+import { getPostList } from "@src/libs/api/post";
+import { tPostList } from "pages/api/getPostList";
+import Observer from "@src/common_component/Observer";
 
-export default function SeriesContainer() {
+export default function SeriesContainer({ param }: { param: number }) {
+  const [seriesInfo, setSeriesInfo] = useState<tSeriesData["data"]>();
+
+  useQuery("seriesInfo", () => getSeries(`?seriesId=${param}`), {
+    onError: (error) => {
+      console.log(error);
+    },
+    onSuccess: ({ data }) => {
+      setSeriesInfo(data);
+    },
+  });
+  const { data, fetchNextPage, hasNextPage, status } =
+    useInfiniteQuery<tPostList>(
+      ["posts"],
+      ({ pageParam = "" }) =>
+        getPostList(`?seriesId=${param}&lastIndex=${pageParam}`),
+      {
+        getNextPageParam: ({ postList }) =>
+          postList && postList[postList.length - 1]
+            ? postList[postList.length - 1].id
+            : undefined,
+      }
+    );
+
+  const handlerIntersection = useCallback(() => {
+    if (hasNextPage) {
+      fetchNextPage();
+    }
+  }, [fetchNextPage, hasNextPage]);
+
+  const renderIfDataExist = useCallback(() => {
+    if (data && data.pages) {
+      const postList = data.pages.reduce<
+        Exclude<tPostList["postList"], undefined>
+      >((prev, { postList }) => {
+        if (postList) prev.push(...postList);
+        return prev;
+      }, []);
+
+      return postList;
+    }
+  }, [data]);
+  const memoData = useMemo(renderIfDataExist, [renderIfDataExist]);
+
+  const render = () => {
+    if (status === "loading") {
+      return <Div>리스트 로딩중</Div>;
+    }
+    if (status === "error") {
+      return <Div>오류</Div>;
+    }
+    return memoData ? (
+      <SeriesList list={memoData} />
+    ) : (
+      <Div>리스트가 없습니다.</Div>
+    );
+  };
+
   return (
     <div className={styles.main}>
-      <div className={styles.seriesTitleWrapper}>
-        <Div
-          backgroundColor="green100"
-          styles={{
-            width: "100%",
-            borderRadius: "8px",
-            aspectRatio: "2/1",
-          }}
-        >
-          이미지
-        </Div>
-        <div className={styles.seriesTitle}>
-          <div>
-            <Typograpy size={20} weight={600} margin="0 0 15px">
-              {list.seriesTitle}
-            </Typograpy>
-            <Typograpy size={15} weight={500} color="gray300">
-              {list.seriesDescription}
-            </Typograpy>
-          </div>
+      <div className={styles.seriesTitle}>
+        <div>
+          <Typograpy size={20} weight={600} margin="0 0 15px">
+            {seriesInfo?.title}
+          </Typograpy>
+          <Typograpy size={15} weight={500} color="gray300">
+            {seriesInfo?.description}
+          </Typograpy>
         </div>
       </div>
 
@@ -47,15 +87,14 @@ export default function SeriesContainer() {
 
       <div className={styles.seriesMenu}>
         <Typograpy size={18} weight={600}>
-          {list.postCount}개의 포스터
+          {seriesInfo?.postCount}개의 포스터
         </Typograpy>
-        <Typograpy size={15}>1화부터</Typograpy>
-        <Typograpy size={15}>최신순</Typograpy>
       </div>
 
       <Divider size={1} color="gray100" />
       <div>
-        <SeriesList />
+        {render()}
+        {hasNextPage && <Observer handleIntersection={handlerIntersection} />}
       </div>
     </div>
   );

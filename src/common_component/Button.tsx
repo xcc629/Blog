@@ -3,14 +3,14 @@ import { themeColor } from "./_theme";
 import Typograpy from "./Typograpy";
 import { CSSProperties } from "react";
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size: number;
   height?: string;
   backgroundColor?: keyof typeof themeColor;
   color?: keyof typeof themeColor;
   border?: CSSProperties["border"];
   borderRadius?: CSSProperties["borderRadius"];
-  onClick: (e?: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (e?: React.MouseEvent<HTMLElement>) => void;
   children: React.ReactNode;
 }
 
@@ -21,10 +21,12 @@ export default function Button({
   border,
   borderRadius,
   onClick,
+  type,
   ...typograpyProps
 }: ButtonProps) {
   return (
     <button
+      type={type}
       style={{
         width: `${size}px`,
         height: height,

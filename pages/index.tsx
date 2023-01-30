@@ -6,7 +6,7 @@ import { Inter } from "@next/font/google";
 import Typograpy from "../src/common_component/Typograpy";
 import Div from "../src/common_component/Div";
 import Link from "next/link";
-import { HREF } from "../src/const";
+import { HREF } from "../src/libs/const";
 
 const inter = Inter({ subsets: ["latin"] });
 

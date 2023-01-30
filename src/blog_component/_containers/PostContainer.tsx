@@ -1,15 +1,24 @@
 import Divider from "@src/common_component/Divider";
 import Typograpy from "@src/common_component/Typograpy";
-import { HREF } from "@src/const";
+import { HREF } from "@src/libs/const";
 import Link from "next/link";
 import * as React from "react";
 import ArrowIcon from "../_icon/ArrowIcon";
 import styles from "@style/index";
 
-export default function PostContainer() {
+import { Common } from "@src/libs/common";
+import { tPostData } from "pages/api/getPost";
+
+interface IDataProps {
+  param: number;
+  post: tPostData;
+}
+
+export default function PostContainer({ post }: IDataProps) {
+  if (!post) return <div>dd</div>;
   return (
     <div className={styles.main}>
-      <Link href={HREF.series + `${1}`}>
+      <Link href={HREF.series + `${post.data?.series.id}`}>
         <nav className={`${styles.flexRightCenter} ${styles.nav}`}>
           <ArrowIcon direction="left" />
           <Typograpy margin="0 0 0 12px" size={15} weight={500}>
@@ -22,48 +31,21 @@ export default function PostContainer() {
       <div className={`${styles.flexBetween} ${styles.titleWrapper}`}>
         <div>
           <Typograpy size={15} weight={500} color="gray300" margin="0 0 4px 0">
-            시리즈 제목
+            {post.data?.series.title}
           </Typograpy>
           <Typograpy size={20} weight={600}>
-            포스트 제목
+            {post.data?.title}
           </Typograpy>
         </div>
         <div className={styles.flexRightBottom}>
           <Typograpy size={15} weight={500} color="gray200">
-            삭제하기
-          </Typograpy>
-          <Typograpy size={15} weight={500} color="gray200" margin="0 27px">
-            수정하기
-          </Typograpy>
-          <Typograpy size={15} weight={500} color="gray200">
-            2023.01.03
+            {Common.getDataString(post.data?.createdAt, ".")}
           </Typograpy>
         </div>
       </div>
 
       <Divider size={1} color="gray100" />
       <div>본문란</div>
-
-      <Divider size={1} color="gray100" />
-      <div>
-        <div className={`${styles.flexRightCenter} ${styles.nextPreTab}`}>
-          <Typograpy size={15} weight={500} color="gray300" margin="0 66px 0 0">
-            다음글
-          </Typograpy>
-          <Typograpy size={18} weight={600}>
-            제목이다
-          </Typograpy>
-        </div>
-        <Divider size={1} color="gray100" />
-        <div className={`${styles.flexRightCenter} ${styles.nextPreTab}`}>
-          <Typograpy size={15} weight={500} color="gray300" margin="0 66px 0 0">
-            이전글
-          </Typograpy>
-          <Typograpy size={18} weight={600}>
-            제목이다
-          </Typograpy>
-        </div>
-      </div>
     </div>
   );
 }

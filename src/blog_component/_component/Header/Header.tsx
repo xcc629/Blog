@@ -5,7 +5,7 @@ import * as React from "react";
 import styles from "@style/index";
 
 import { useHandler } from "./_hooks";
-import { HREF } from "@src/const";
+import { HREF } from "@src/libs/const";
 import Typograpy from "@src/common_component/Typograpy";
 import ArrowIcon from "@src/blog_component/_icon/ArrowIcon";
 import Button from "@src/common_component/Button";
