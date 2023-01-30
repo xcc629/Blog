@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    EXP: process.env.EXP,
+  },
   reactStrictMode: true,
   webpack: (config) => {
     config.module.rules.push({
