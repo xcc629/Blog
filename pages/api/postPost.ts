@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { INextApiResponse } from "@src/interfaces/api";
+import { INextApiResponse } from "@src/libs/interfaces/api";
 import prisma from "@src/libs/prisma";
 import type { NextApiRequest } from "next";
 

@@ -6,4 +6,4 @@ type tPostLoginPayload = {
 };
 
 export const postLogin = (payload: tPostLoginPayload) =>
-  axios.post("/postLogin", payload);
+  axios.post("/api/postLogin", payload);

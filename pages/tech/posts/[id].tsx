@@ -1,13 +1,15 @@
 import * as React from "react";
 
 import Head from "next/head";
-import { useRouter } from "next/router";
+
 import PostContainer from "@src/blog_component/_containers/PostContainer";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import getPost from "pages/api/getPost";
+import getPostIdList from "pages/api/getPostIdList";
 
-export default function Post() {
-  const router = useRouter();
-  const { id } = router.query;
-
+export default function Post({
+  post,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <Head>
@@ -16,8 +18,32 @@ export default function Post() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {id}
-      <PostContainer />
+
+      <PostContainer post={post} />
     </>
   );
 }
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const idList = await getPostIdList();
+  const list = idList.map((el: { id: number }) => ({
+    params: { id: el.id.toString() },
+  }));
+
+  return {
+    paths: list,
+    fallback: false,
+  };
+};
+
+export const getStaticProps = async ({
+  params,
+}: {
+  params: {
+    id: string;
+  };
+}) => {
+  const post = await getPost(params.id);
+
+  return { props: { post } };
+};

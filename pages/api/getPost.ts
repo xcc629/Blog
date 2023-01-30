@@ -1,32 +1,39 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { INextApiResponse } from "@src/interfaces/api";
-import prisma from "@src/libs/prisma";
-import type { NextApiRequest } from "next";
 
-type tData = {
+import prisma from "@src/libs/prisma";
+
+export type tPostData = {
   data: {
     id: number;
     createdAt: Date;
     title: string;
     published: boolean;
-    authorId: number;
-    seriesId: number;
+    series: { id: number; title: string };
   } | null;
 };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: INextApiResponse<tData>
-) {
+export default async function getPost(param: string) {
   try {
-    const { postId } = req.query;
     const data = await prisma.post.findUnique({
       where: {
-        id: Number(postId),
+        id: Number(param),
+      },
+      select: {
+        id: true,
+        createdAt: true,
+        title: true,
+        published: true,
+        series: {
+          select: {
+            id: true,
+            title: true,
+          },
+        },
       },
     });
-    res.status(200).json({ data });
+    const res = JSON.parse(JSON.stringify(data));
+    return res;
   } catch (err) {
-    res.status(400).json({ message: `${err}` });
+    console.log(err);
   }
 }

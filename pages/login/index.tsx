@@ -3,10 +3,7 @@ import Head from "next/head";
 import { Inter } from "@next/font/google";
 
 import React from "react";
-import Typograpy from "@src/common_component/Typograpy";
-import Div from "@src/common_component/Div";
-import Input from "@src/blog_component/_component/Input";
-import Button from "@src/common_component/Button";
+import LoginContainer from "@src/blog_component/_containers/LoginContainer";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -20,28 +17,7 @@ export default function Login() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div style={{ padding: "100px" }}>
-        <Div>
-          <Typograpy>아이디</Typograpy>
-          <Input type="email" />
-        </Div>
-        <Div padding="20px 0 30px">
-          <Typograpy>비밀번호</Typograpy>
-          <Input type="password" />
-        </Div>
-        <Div>
-          <Button
-            size={340}
-            height="50px"
-            color="white"
-            backgroundColor="green300"
-            borderRadius="8px"
-            onClick={() => console.log("dd")}
-          >
-            로그인하기
-          </Button>
-        </Div>
-      </div>
+      <LoginContainer />
     </>
   );
 }

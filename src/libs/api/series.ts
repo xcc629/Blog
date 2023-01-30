@@ -1,4 +1,5 @@
 import axios from "axios";
+import { tSeriesList } from "pages/api/getSeriesList";
 
 export type tCreateSeriesPayload = {
   title: string;
@@ -6,8 +7,10 @@ export type tCreateSeriesPayload = {
 };
 
 export const creatSeries = (payload: tCreateSeriesPayload) =>
-  axios.post("/postSeries", payload);
+  axios.post("/api/postSeries", payload);
 
-export const getSeries = () => axios.get("/getSeries");
-
-export const getSeriesList = () => axios.get("/getSeriesList");
+const listService = axios.create({
+  baseURL: "/api/getSeriesList",
+});
+export const getSeriesList = (queryString: string) =>
+  listService.get(queryString).then((res) => res.data);

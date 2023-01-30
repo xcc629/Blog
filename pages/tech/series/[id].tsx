@@ -1,11 +1,13 @@
 import SeriesContainer from "@src/blog_component/_containers/SeriesContainer";
+
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import getSeries from "pages/api/getSeries";
 
-export default function Series() {
-  const router = useRouter();
-  const { id } = router.query;
-
+export default function Series({
+  param,
+  seriesInfo,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <Head>
@@ -14,7 +16,20 @@ export default function Series() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <SeriesContainer />
+      <SeriesContainer param={param} seriesInfo={seriesInfo} />
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({
+  query: { id },
+}) => {
+  const seriesInfo = await getSeries(id as string);
+
+  return {
+    props: {
+      seriesInfo: seriesInfo,
+      param: id,
+    },
+  };
+};
