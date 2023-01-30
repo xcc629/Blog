@@ -10,15 +10,20 @@ import { Common } from "@src/libs/common";
 import { tPostData } from "pages/api/getPost";
 
 interface IDataProps {
-  param: number;
-  post: tPostData;
+  post: {
+    id: number;
+    createdAt: Date;
+    title: string;
+    published: boolean;
+    series: { id: number; title: string };
+  };
 }
 
 export default function PostContainer({ post }: IDataProps) {
   if (!post) return <div>dd</div>;
   return (
     <div className={styles.main}>
-      <Link href={HREF.series + `${post.data?.series.id}`}>
+      <Link href={HREF.series + `${post.series.id}`}>
         <nav className={`${styles.flexRightCenter} ${styles.nav}`}>
           <ArrowIcon direction="left" />
           <Typograpy margin="0 0 0 12px" size={15} weight={500}>
@@ -31,15 +36,15 @@ export default function PostContainer({ post }: IDataProps) {
       <div className={`${styles.flexBetween} ${styles.titleWrapper}`}>
         <div>
           <Typograpy size={15} weight={500} color="gray300" margin="0 0 4px 0">
-            {post.data?.series.title}
+            {post.series.title}
           </Typograpy>
           <Typograpy size={20} weight={600}>
-            {post.data?.title}
+            {post.title}
           </Typograpy>
         </div>
         <div className={styles.flexRightBottom}>
           <Typograpy size={15} weight={500} color="gray200">
-            {Common.getDataString(post.data?.createdAt, ".")}
+            {Common.getDataString(post.createdAt, ".")}
           </Typograpy>
         </div>
       </div>

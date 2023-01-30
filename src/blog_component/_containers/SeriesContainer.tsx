@@ -7,22 +7,25 @@ import styles from "@style/index";
 
 import { tSeriesData } from "pages/api/getSeries";
 import { useInfiniteQuery, useQuery } from "react-query";
-import { getSeries } from "@src/libs/api/series";
+
 import { getPostList } from "@src/libs/api/post";
 import { tPostList } from "pages/api/getPostList";
 import Observer from "@src/common_component/Observer";
 
-export default function SeriesContainer({ param }: { param: number }) {
-  const [seriesInfo, setSeriesInfo] = useState<tSeriesData["data"]>();
+interface ISeriesDataProps {
+  param: number;
+  seriesInfo: {
+    id: number;
+    title: string;
+    description: string;
+    postCount: number;
+  };
+}
 
-  useQuery("seriesInfo", () => getSeries(`?seriesId=${param}`), {
-    onError: (error) => {
-      console.log(error);
-    },
-    onSuccess: ({ data }) => {
-      setSeriesInfo(data);
-    },
-  });
+export default function SeriesContainer({
+  param,
+  seriesInfo,
+}: ISeriesDataProps) {
   const { data, fetchNextPage, hasNextPage, status } =
     useInfiniteQuery<tPostList>(
       ["posts"],

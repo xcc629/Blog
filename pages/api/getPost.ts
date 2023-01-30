@@ -1,8 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import { INextApiResponse } from "@src/libs/interfaces/api";
 import prisma from "@src/libs/prisma";
-import type { NextApiRequest } from "next";
 
 export type tPostData = {
   data: {
@@ -14,16 +12,11 @@ export type tPostData = {
   } | null;
 };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: INextApiResponse<tPostData>
-) {
+export default async function getPost(param: string) {
   try {
-    const { postId } = req.query;
-    console.log(postId);
     const data = await prisma.post.findUnique({
       where: {
-        id: Number(postId),
+        id: Number(param),
       },
       select: {
         id: true,
@@ -38,8 +31,9 @@ export default async function handler(
         },
       },
     });
-    res.status(200).json({ data });
+    const res = JSON.parse(JSON.stringify(data));
+    return res;
   } catch (err) {
-    res.status(400).json({ message: `${err}` });
+    console.log(err);
   }
 }

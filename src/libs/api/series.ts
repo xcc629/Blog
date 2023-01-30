@@ -9,12 +9,6 @@ export type tCreateSeriesPayload = {
 export const creatSeries = (payload: tCreateSeriesPayload) =>
   axios.post("/api/postSeries", payload);
 
-const service = axios.create({
-  baseURL: "/api/getSeries/",
-});
-export const getSeries = (queryString: string) =>
-  service.get(queryString).then((res) => res.data);
-
 const listService = axios.create({
   baseURL: "/api/getSeriesList",
 });

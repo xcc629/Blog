@@ -4,7 +4,8 @@ import Head from "next/head";
 
 import PostContainer from "@src/blog_component/_containers/PostContainer";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import { getPost } from "@src/libs/api/post";
+import getPost from "pages/api/getPost";
+import getPostIdList from "pages/api/getPostIdList";
 
 export default function Post({
   post,
@@ -18,22 +19,31 @@ export default function Post({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <PostContainer param={1} post={post} />
+      <PostContainer post={post} />
     </>
   );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const idList = await getPostIdList();
+  const list = idList.map((el: { id: number }) => ({
+    params: { id: el.id.toString() },
+  }));
+
   return {
-    paths: [{ params: { id: "1" } }],
+    paths: list,
     fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const post = await getPost("1");
-
-  console.log("params", params);
+export const getStaticProps = async ({
+  params,
+}: {
+  params: {
+    id: string;
+  };
+}) => {
+  const post = await getPost(params.id);
 
   return { props: { post } };
 };
