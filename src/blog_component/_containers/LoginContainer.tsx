@@ -8,6 +8,7 @@ import { postLogin } from "@src/libs/api/auth";
 import { useMutation } from "react-query";
 import styles from "../_style";
 import { tPostLoginRes } from "pages/api/postLogin";
+import { HREF } from "@src/libs/const";
 
 export default function LoginContainer() {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -23,13 +24,12 @@ export default function LoginContainer() {
           "isAuth",
           data.role + data.userInfo.id + data.userInfo.email
         );
+        window.location.href = "/";
       } else {
         window.alert("아이디, 비밀번호를 확인해주세요.");
       }
     },
-    onSettled: () => {
-      console.log("end");
-    },
+    onSettled: () => {},
   });
 
   const handleSubmit = useCallback(

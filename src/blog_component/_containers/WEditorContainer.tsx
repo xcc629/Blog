@@ -10,13 +10,28 @@ import Prism from "prismjs";
 
 import styles from "@style/index";
 import Div from "@src/common_component/Div";
-import TitleInput from "../_component/TitleInput";
 
 export default function WEditorContainer() {
+  const titleRef = React.useRef<HTMLInputElement>(null);
+  const editorRef = React.useRef<any>(null);
+
+  const handleEditor = () => {
+    if (editorRef.current) {
+      const editorIns = editorRef?.current?.getInstance();
+      const content = editorIns.getHTML();
+      console.log(content);
+    }
+  };
+
   return (
     <div className={styles.main}>
       <Div padding="0 0 10px">
-        <TitleInput />
+        <input
+          type="text"
+          placeholder="제목"
+          className={styles.titleInput}
+          ref={titleRef}
+        />
       </Div>
       <div>
         <Editor
@@ -26,6 +41,8 @@ export default function WEditorContainer() {
           height="100vh"
           plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
           language="ko-KR"
+          ref={editorRef}
+          onChange={handleEditor}
         />
       </div>
     </div>
