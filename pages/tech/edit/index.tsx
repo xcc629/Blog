@@ -6,6 +6,7 @@ import React from "react";
 
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import WEHeader from "@src/blog_component/_component/WEHeader";
 
 const WEditorContainer = dynamic(
   () => import("@src/blog_component/_containers/WEditorContainer"),
@@ -31,6 +32,7 @@ export default function Editor() {
       </Head>
 
       <div>
+        <WEHeader />
         <WEditorContainer />
       </div>
     </>

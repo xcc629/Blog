@@ -1,3 +1,4 @@
+import { HREF } from "@src/libs/const";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -23,7 +24,12 @@ function useHandler() {
     setIsClickCatergory((p) => !p);
   };
 
-  return { location, isClickCatergory, isClickMenu, onClickCategory };
+  return {
+    location,
+    isClickCatergory,
+    isClickMenu,
+    onClickCategory,
+  };
 }
 
 export { useHandler };

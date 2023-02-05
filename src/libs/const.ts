@@ -5,6 +5,7 @@ const HREF = {
   post: "/tech/posts/",
   resume: "/resume/",
   login: "/login/",
+  edit: "/tech/edit",
 };
 
 export { HREF };

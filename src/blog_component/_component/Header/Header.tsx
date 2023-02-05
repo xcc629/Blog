@@ -13,6 +13,22 @@ import Button from "@src/common_component/Button";
 export default function Header() {
   const { location, isClickCatergory, isClickMenu, onClickCategory } =
     useHandler();
+  const [loginBtnState, setLoginBtnState] = React.useState({
+    href: HREF.login,
+    btnText: "로그인",
+  });
+
+  React.useEffect(() => {
+    const session = window.sessionStorage.getItem("isAuth");
+    const isLogin = process.env.NEXT_PUBLIC_AUTH_KEY === session;
+
+    isLogin &&
+      setLoginBtnState((prev) => ({
+        ...prev,
+        href: HREF.edit,
+        btnText: "글쓰기",
+      }));
+  }, []);
 
   return (
     <>
@@ -41,17 +57,14 @@ export default function Header() {
         </div>
 
         <div className={styles.pcHeader}>
-          <Link href={HREF.login}>
+          <Link href={loginBtnState.href}>
             <Button
               size={80}
               color="white"
               backgroundColor="green300"
               borderRadius="10px"
-              onClick={() => {
-                console.log("1");
-              }}
             >
-              로그인
+              {loginBtnState.btnText}
             </Button>
           </Link>
         </div>
