@@ -1,3 +1,5 @@
+"use client";
+
 import { FormEvent, useCallback, useRef } from "react";
 
 import Button from "@src/common_component/Button";
@@ -6,9 +8,8 @@ import Typograpy from "@src/common_component/Typograpy";
 import { postLogin } from "@src/libs/api/auth";
 
 import { useMutation } from "react-query";
-import styles from "../_style";
+import styles from "../../src/blog_component/_style";
 import { tPostLoginRes } from "pages/api/postLogin";
-import { HREF } from "@src/libs/const";
 
 export default function LoginContainer() {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -49,27 +50,32 @@ export default function LoginContainer() {
   );
 
   return (
-    <form style={{ padding: "100px" }} onSubmit={handleSubmit}>
-      <Div>
-        <Typograpy>아이디</Typograpy>
-        <input type="email" ref={emailRef} className={styles.input} />
-      </Div>
-      <Div padding="20px 0 30px">
-        <Typograpy>비밀번호</Typograpy>
-        <input type="password" ref={passwordRef} className={styles.input} />
-      </Div>
-      <Div>
-        <Button
-          type="submit"
-          size={340}
-          height="50px"
-          color="white"
-          backgroundColor="green300"
-          borderRadius="8px"
-        >
-          로그인하기
-        </Button>
-      </Div>
-    </form>
+    <div className={styles.main}>
+      <form onSubmit={handleSubmit} className={styles.loginWrapper}>
+        <div style={{ fontSize: "1rem", color: "grey", padding: "1rem 0" }}>
+          현재는 확인된 유저만 로그인이 가능합니다.
+        </div>
+        <div className={styles.inputWrapper}>
+          <Typograpy size={15}>아이디</Typograpy>
+          <input type="email" ref={emailRef} className={styles.input} />
+        </div>
+        <div className={styles.inputWrapper}>
+          <Typograpy size={15}>비밀번호</Typograpy>
+          <input type="password" ref={passwordRef} className={styles.input} />
+        </div>
+        <div className={styles.inputWrapper}>
+          <Button
+            type="submit"
+            size={340}
+            height="50px"
+            border="1px solid gray"
+            backgroundColor="white100"
+            borderRadius="8px"
+          >
+            로그인하기
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 }

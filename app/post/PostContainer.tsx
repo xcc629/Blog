@@ -3,11 +3,10 @@ import Typograpy from "@src/common_component/Typograpy";
 import { HREF } from "@src/libs/const";
 import Link from "next/link";
 import * as React from "react";
-import ArrowIcon from "../_icon/ArrowIcon";
+import ArrowIcon from "../../src/blog_component/_icon/ArrowIcon";
 import styles from "@style/index";
 
 import { Common } from "@src/libs/common";
-import { tPostData } from "pages/api/getPost";
 
 interface IDataProps {
   post: {
@@ -15,6 +14,7 @@ interface IDataProps {
     createdAt: Date;
     title: string;
     published: boolean;
+    content: string;
     series: { id: number; title: string };
   };
 }
@@ -50,7 +50,7 @@ export default function PostContainer({ post }: IDataProps) {
       </div>
 
       <Divider size={1} color="gray100" />
-      <div>본문란</div>
+      <div dangerouslySetInnerHTML={{ __html: post.content }} />
     </div>
   );
 }

@@ -32,6 +32,7 @@ model Post {
   authorId   Int
   series Series @relation( fields: [seriesId] ,references: [id])
   seriesId Int
+  content String 
 
   @@map("posts")
   @@index([authorId])

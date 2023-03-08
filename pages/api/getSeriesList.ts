@@ -39,9 +39,8 @@ export default async function handler(
     });
 
     const length = list.length;
-
     res.status(200).json({ seriesList: 0 < length ? list : undefined });
   } catch (err) {
-    res.status(400).json({ message: `${err}` });
+    console.log(err);
   }
 }

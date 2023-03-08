@@ -1,8 +1,10 @@
+"use client";
+
 import Div from "@src/common_component/Div";
 import Divider from "@src/common_component/Divider";
 import Typograpy from "@src/common_component/Typograpy";
-import { useCallback, useMemo, useState } from "react";
-import SeriesList from "../_component/PostsList";
+import { useCallback, useMemo } from "react";
+
 import styles from "@style/index";
 
 import { tSeriesData } from "pages/api/getSeries";
@@ -11,9 +13,10 @@ import { useInfiniteQuery, useQuery } from "react-query";
 import { getPostList } from "@src/libs/api/post";
 import { tPostList } from "pages/api/getPostList";
 import Observer from "@src/common_component/Observer";
+import PostsList from "./PostsList";
 
 interface ISeriesDataProps {
-  param: number;
+  param: string;
   seriesInfo: {
     id: number;
     title: string;
@@ -67,7 +70,7 @@ export default function SeriesContainer({
       return <Div>오류</Div>;
     }
     return memoData ? (
-      <SeriesList list={memoData} />
+      <PostsList list={memoData} />
     ) : (
       <Div>리스트가 없습니다.</Div>
     );

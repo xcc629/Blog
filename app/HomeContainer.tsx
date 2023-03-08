@@ -1,3 +1,5 @@
+"use client";
+
 import Div from "@src/common_component/Div";
 import Observer from "@src/common_component/Observer";
 import Typograpy from "@src/common_component/Typograpy";
@@ -7,9 +9,9 @@ import { tSeriesList } from "pages/api/getSeriesList";
 
 import { useCallback, useMemo } from "react";
 import { useInfiniteQuery } from "react-query";
-import HomeList from "../_component/SeriesList";
+import { MemoizedSeriesList } from "./SeriesList";
 
-export default function TechHomeContainer() {
+export default function HomeContainer() {
   const { data, fetchNextPage, hasNextPage, status } =
     useInfiniteQuery<tSeriesList>(
       ["serieses"],
@@ -48,7 +50,7 @@ export default function TechHomeContainer() {
       return <Div>오류</Div>;
     }
     return memoData ? (
-      <HomeList list={memoData} />
+      <MemoizedSeriesList list={memoData} />
     ) : (
       <Div>리스트가 없습니다</Div>
     );
@@ -58,7 +60,7 @@ export default function TechHomeContainer() {
     <main className={styles.main}>
       <Div>
         <Typograpy size={20} weight="bold" margin="0 0 10px">
-          전체 시리즈
+          SERIES
         </Typograpy>
       </Div>
       {render()}

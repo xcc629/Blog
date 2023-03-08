@@ -5,22 +5,23 @@ import { Inter } from "@next/font/google";
 import React from "react";
 
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
-import WEHeader from "@src/blog_component/_component/WEHeader";
+import getSeriesAllList from "pages/api/getSeriesAllList";
 
-const WEditorContainer = dynamic(
-  () => import("@src/blog_component/_containers/WEditorContainer"),
-  {
-    ssr: false,
-  }
-);
+const WEditorContainer = dynamic(() => import("app/edit/WEditorContainer"), {
+  ssr: false,
+});
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Editor() {
-  const router = useRouter();
+export async function getData() {
+  const res = await getSeriesAllList();
+  return res;
+}
 
-  const { redirect } = router.query;
+export default async function Page() {
+  const seriesAllListData = getData();
+
+  const [seriesAllList] = await Promise.all([seriesAllListData]);
 
   return (
     <>
@@ -30,11 +31,7 @@ export default function Editor() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <div>
-        <WEHeader />
-        <WEditorContainer />
-      </div>
+      <WEditorContainer seriesAllList={seriesAllList} />
     </>
   );
 }

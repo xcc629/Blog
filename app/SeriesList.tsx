@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useMemo } from "react";
+import * as React from "react";
 
 import styles from "@style/index";
 import { HREF } from "@src/libs/const";
@@ -29,20 +29,19 @@ function GridItem({ id, title, description }: itemProps) {
   );
 }
 
-export default function SeriesList({ list }: { list: itemProps[] }) {
-  return useMemo(
-    () => (
-      <div className={styles.gridWrapper}>
-        {list.map((el) => (
-          <GridItem
-            id={el.id}
-            key={el.id}
-            title={el.title}
-            description={el.description}
-          />
-        ))}
-      </div>
-    ),
-    [list]
+function SeriesList({ list }: { list: itemProps[] }) {
+  return (
+    <div className={styles.gridWrapper}>
+      {list.map((el) => (
+        <GridItem
+          id={el.id}
+          key={el.id}
+          title={el.title}
+          description={el.description}
+        />
+      ))}
+    </div>
   );
 }
+
+export const MemoizedSeriesList = React.memo(SeriesList);
