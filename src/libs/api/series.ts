@@ -1,5 +1,4 @@
 import axios from "axios";
-import { tSeriesList } from "pages/api/getSeriesList";
 
 export type tCreateSeriesPayload = {
   title: string;

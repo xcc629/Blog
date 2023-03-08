@@ -11,6 +11,7 @@ interface TypograyProps extends DivProps {
 /**
  *
  * white: "#FFFFFF",
+ * white100: "#f5f5f5"
  *
  * gray100: "#DDDDDD",
  * gray200: "#C7C7C7",

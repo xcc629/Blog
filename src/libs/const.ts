@@ -1,11 +1,10 @@
 const HREF = {
   origin: "/",
-  tech: "/tech/",
-  series: "/tech/series/",
-  post: "/tech/posts/",
+  series: "/series/",
+  post: "/post/",
   resume: "/resume/",
   login: "/login/",
-  edit: "/tech/edit",
+  edit: "/edit",
 };
 
 export { HREF };

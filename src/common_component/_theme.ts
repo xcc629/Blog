@@ -23,6 +23,7 @@ export const typograpySize = {
 
 export const themeColor = {
   white: "#FFFFFF",
+  white100: "f5f5f5",
 
   gray50: "#E9E9E9",
   gray100: "#DDDDDD",

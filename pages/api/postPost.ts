@@ -9,6 +9,7 @@ type tData = {
     published: boolean;
     authorId: number;
     seriesId: number;
+    content: string;
   };
   isSuccessed: boolean;
 };
@@ -18,9 +19,15 @@ export default async function handler(
   res: INextApiResponse<tData>
 ) {
   try {
-    const data = req.body;
+    const data: tData["data"] = req.body;
     const result = await prisma.post.create({
-      data,
+      data: {
+        title: data.title,
+        published: true,
+        authorId: 1,
+        seriesId: data.seriesId,
+        content: data.content,
+      },
     });
     res.status(200).json({ data: result, isSuccessed: true });
   } catch (err) {
